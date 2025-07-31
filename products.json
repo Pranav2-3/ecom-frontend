@@ -4,7 +4,7 @@
     "name": "Apple iPhone 14",
     "description": "Experience the power of the Apple A15 Bionic chip, advanced dual-camera system, 6.1-inch Super Retina XDR display, and all-day battery life. 5G capable with iOS 16.",
     "price": 100000,
-    "image": "images/iphone14.jpg",
+    "image": "./images/iphone14.jpg",
     "category": "mobiles"
   },
   {
@@ -12,7 +12,7 @@
     "name": "Samsung Galaxy S22",
     "description": "Flagship Android smartphone featuring a 6.1-inch Dynamic AMOLED 2X display, Snapdragon 8 Gen 1 chipset, pro-grade camera system, and long-lasting battery with fast charging.",
     "price": 85000,
-    "image": "images/samsungs22.jpg",
+    "image": "./images/samsungs22.jpg",
     "category": "mobiles"
   },
   {
@@ -20,7 +20,7 @@
     "name": "Sony WH-1000XM5 Headphones",
     "description": "Industry-leading noise cancellation with premium sound quality. Up to 30 hours of battery life, touch controls, and comfortable over-ear design for long listening sessions.",
     "price": 29990,
-    "image": "images/sony.jpg",
+    "image": "./images/sony.jpg",
     "category": "electronics"
   },
   {
@@ -28,7 +28,7 @@
     "name": "Apple MacBook Air M2",
     "description": "Ultra-thin and fast laptop powered by Apple’s M2 chip. 13.6-inch Liquid Retina display, fanless design, silent performance, and up to 18 hours of battery life.",
     "price": 124900,
-    "image": "images/apple.jpg",
+    "image": "./images/apple.jpg",
     "category": "laptops"
   },
   {
@@ -36,7 +36,7 @@
     "name": "Canon EOS 1500D DSLR Camera",
     "description": "24.1 MP APS-C CMOS sensor with DIGIC 4+ image processor. Full HD video recording, built-in Wi-Fi, and compatibility with a wide range of EF lenses.",
     "price": 37990,
-    "image": "images/camera.jpg",
+    "image": "./images/camera.jpg",
     "category": "cameras"
   },
   {
@@ -44,7 +44,7 @@
     "name": "OnePlus Nord CE 3 Lite",
     "description": "A balanced mid-range phone with a 108 MP camera, 5000 mAh battery, and Snapdragon 695 5G chipset.",
     "price": 19999,
-    "image": "images/oneplus.jpg",
+    "image": "./images/oneplus.jpg",
     "category": "mobiles"
   },
   {
@@ -52,7 +52,7 @@
     "name": "Logitech MX Master 3 Mouse",
     "description": "High-performance wireless mouse with ultra-fast scrolling, ergonomic design, and app-specific customizations.",
     "price": 9999,
-    "image": "images/mouse.jpg",
+    "image": "./images/mouse.jpg",
     "category": "electronics"
   },
   {
@@ -60,7 +60,7 @@
     "name": "GoPro HERO11 Black",
     "description": "Compact waterproof action camera with 5.3K60 Ultra HD video, HyperSmooth stabilization, and front+rear LCD screens.",
     "price": 51990,
-    "image": "images/gopro.jpg",
+    "image": "./images/gopro.jpg",
     "category": "cameras"
   },
   {
@@ -68,7 +68,7 @@
     "name": "HP DeskJet Ink Advantage 2331 Printer",
     "description": "All-in-one color printer with print, scan, and copy features. Ideal for home use with USB connectivity.",
     "price": 4499,
-    "image": "images/printer.jpg",
+    "image": "./images/printer.jpg",
     "category": "electronics"
   }
 ]
