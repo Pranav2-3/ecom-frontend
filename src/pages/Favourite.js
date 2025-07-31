@@ -39,15 +39,18 @@ const Favourite = () => {
               <Card className="shadow-sm h-100">
                 <Card.Img
                   variant="top"
-                  src={item.image}
+                  src={`${process.env.PUBLIC_URL}/${item.image}`}
+                  onError={(e) =>
+                    (e.target.src = `${process.env.PUBLIC_URL}/images/fallback.jpg`)
+                  }
                   style={{ height: '250px', objectFit: 'contain', padding: '10px' }}
                 />
                 <Card.Body className="d-flex flex-column justify-content-between">
-                  <Card.Title>{item.title}</Card.Title>
+                  <Card.Title>{item.name}</Card.Title>
                   <Card.Text className="fw-semibold fs-5 text-success">
                     ₹{item.price}
                   </Card.Text>
-                  <div className="d-flex justify-content-between gap-2">
+                  <div className="d-flex justify-content-between gap-2 flex-wrap">
                     <Link to={`/product/${item.id}`} className="btn btn-primary btn-sm">
                       View Product
                     </Link>
@@ -79,7 +82,8 @@ const Favourite = () => {
           <Modal.Title>Confirm Removal</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to remove <strong>{selectedItem?.title}</strong> from your wishlist?
+          Are you sure you want to remove{' '}
+          <strong>{selectedItem?.name}</strong> from your wishlist?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>

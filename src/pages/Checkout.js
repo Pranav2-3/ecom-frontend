@@ -22,18 +22,15 @@ const Checkout = () => {
     paymentMode: 'Credit Card',
   });
 
-  // Update form state
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Email and phone validation
   const isValidEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidPhone = (phone) =>
     /^[6-9]\d{9}$/.test(phone);
 
-  // Handle order submission
   const handlePlaceOrder = async () => {
     const { name, email, address, phone } = form;
 
@@ -174,7 +171,10 @@ const Checkout = () => {
                   >
                     <div style={{ display: 'flex', gap: '10px' }}>
                       <img
-                        src={item.image}
+                        src={`${process.env.PUBLIC_URL}/${item.image}`}
+                        onError={(e) =>
+                          (e.target.src = `${process.env.PUBLIC_URL}/images/fallback.jpg`)
+                        }
                         alt={item.name}
                         style={{
                           width: '60px',

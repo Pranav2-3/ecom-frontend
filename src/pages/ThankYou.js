@@ -44,7 +44,8 @@ const ThankYou = () => {
           {order.map((item, index) => (
             <div key={index} className="d-flex align-items-center mb-4">
               <img
-                src={item.image}
+                src={`${process.env.PUBLIC_URL}/${item.image}`}
+                onError={(e) => (e.target.src = `${process.env.PUBLIC_URL}/images/fallback.jpg`)}
                 alt={item.name}
                 style={{
                   width: '80px',

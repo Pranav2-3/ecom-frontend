@@ -24,7 +24,8 @@ const Cart = () => {
           <div className="col-md-4 mb-4" key={idx}>
             <div className="card h-100 shadow-sm">
               <img
-                src={i.image}
+                src={`${process.env.PUBLIC_URL}/${i.image}`}
+                onError={(e) => (e.target.src = `${process.env.PUBLIC_URL}/images/fallback.jpg`)}
                 alt={i.name}
                 className="card-img-top"
                 style={{ height: '200px', objectFit: 'cover' }}

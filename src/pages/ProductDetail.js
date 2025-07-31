@@ -33,7 +33,8 @@ const ProductDetail = () => {
     <div className="container mt-5">
       <h2>{product.name}</h2>
       <img
-        src={product.image}
+        src={`${process.env.PUBLIC_URL}/${product.image}`}
+        onError={(e) => (e.target.src = `${process.env.PUBLIC_URL}/images/fallback.jpg`)}
         alt={product.name}
         className="img-fluid mb-3"
         style={{ maxHeight: '400px', objectFit: 'cover' }}

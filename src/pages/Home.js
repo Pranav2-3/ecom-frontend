@@ -6,7 +6,7 @@ import { addToCart } from '../redux/slices/cartSlice';
 import { toggleFavorite } from '../redux/slices/favouriteSlice';
 
 const Home = () => {
-  const { items, loading } = useSelector(state => state.products);
+  const { items, loading, error } = useSelector(state => state.products);
   const { items: favourites } = useSelector(state => state.favorite);
   const dispatch = useDispatch();
 
@@ -14,30 +14,35 @@ const Home = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [addedProductIds, setAddedProductIds] = useState([]);
 
+  const categories = [...new Set(
+    items.map(product => product.category?.trim().toLowerCase()).filter(Boolean)
+  )];
+
+  const isFavourite = (productId) =>
+    favourites.some(item => item.id === productId);
+
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     setAddedProductIds(prev => [...prev, product.id]);
+
     setTimeout(() => {
       setAddedProductIds(prev => prev.filter(id => id !== product.id));
     }, 1000);
   };
 
-  const isFavourite = (productId) => favourites.some(item => item.id === productId);
-
   const handleToggleFavorite = (product) => {
     dispatch(toggleFavorite(product));
   };
 
-  // Extract unique categories
-  const categories = [...new Set(items.map(product => product.category))];
-
-  // Filter logic
   const filteredItems = items.filter(product =>
-    product.name.toLowerCase().startsWith(search.toLowerCase()) &&
-    (categoryFilter ? product.category === categoryFilter : true)
+    product.name.toLowerCase().includes(search.toLowerCase()) &&
+    (categoryFilter
+      ? product.category?.trim().toLowerCase() === categoryFilter.trim().toLowerCase()
+      : true)
   );
 
   if (loading) return <p className="text-center">Loading...</p>;
+  if (error) return <p className="text-center text-danger">❌ Failed to load products. Please try again later.</p>;
 
   return (
     <>
@@ -63,14 +68,16 @@ const Home = () => {
             >
               <option value="">All Categories</option>
               {categories.map((cat, idx) => (
-                <option key={idx} value={cat}>{cat}</option>
+                <option key={idx} value={cat}>
+                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                </option>
               ))}
             </select>
           </div>
         </div>
 
+        {/* Product Grid */}
         <h2 className="text-center mb-4">✨ Our Top Picks</h2>
-
         <div className="row">
           {filteredItems.length === 0 ? (
             <p className="text-center">No products match your search or category filter.</p>
@@ -85,7 +92,7 @@ const Home = () => {
                     overflow: 'hidden',
                   }}
                 >
-                  {/* Wishlist Heart */}
+                  {/* Wishlist Button */}
                   <button
                     onClick={() => handleToggleFavorite(product)}
                     className="btn position-absolute"
@@ -99,15 +106,21 @@ const Home = () => {
                       boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
                     }}
                   >
-                    <span style={{ color: isFavourite(product.id) ? 'red' : '#888', fontSize: '1.2rem' }}>
+                    <span
+                      style={{
+                        color: isFavourite(product.id) ? 'red' : '#888',
+                        fontSize: '1.2rem',
+                      }}
+                    >
                       {isFavourite(product.id) ? '❤️' : '🤍'}
                     </span>
                   </button>
 
-                  {/* Image */}
+                  {/* Product Image */}
                   <div style={{ position: 'relative' }}>
                     <img
-                      src={product.image}
+                      src={`${process.env.PUBLIC_URL}/${product.image}`}
+                      onError={(e) => (e.target.src = `${process.env.PUBLIC_URL}/images/fallback.jpg`)}
                       className="card-img-top"
                       alt={product.name}
                       style={{ height: '250px', objectFit: 'cover' }}
@@ -127,7 +140,7 @@ const Home = () => {
                     </span>
                   </div>
 
-                  {/* Content */}
+                  {/* Product Info */}
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title">{product.name}</h5>
                     <div className="mb-2">
