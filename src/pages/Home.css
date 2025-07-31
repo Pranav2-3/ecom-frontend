@@ -1,0 +1,29 @@
+.hero {
+  background-image: url('/images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.category-card {
+  transition: transform 0.3s ease;
+}
+.category-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
